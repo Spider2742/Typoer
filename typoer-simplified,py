@@ -2,7 +2,7 @@ import keyboard
 import random
 from time import sleep
 
-def typoer(text, wpm=200, accuracy=0.98, backspace_delay=0.03, correction_chance=0.85, stop_key='escape'):
+def typoer(text, wpm=200, accuracy=0.98, backspace_delay=0.03, correction_chance=1, stop_key='escape'):
     """
     Simulates human-like typing with natural speed, typos, and self-corrections.
 
