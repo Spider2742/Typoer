@@ -1,7 +1,5 @@
-# Typoer
-Improved verison of georgetian3/typoer to fix the suntax error in paragraphs
-
 # Typoer - Realistic Typing Simulation
+Improved verison of georgetian3/typoer to fix the suntax error in paragraphs
 
 ## Overview
 `Typoer` is a Python script that simulates human-like typing with customizable speed, accuracy, typos, and self-corrections. It allows for a realistic and dynamic typing experience.
