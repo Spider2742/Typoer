@@ -17,8 +17,6 @@ Ensure you have Python installed, then install the required dependency:
 ```sh
 pip install keyboard
 ```
-> [!NOTE]
-> You may need to use sudo if you are using it in linux
 
 ## Usage
 Run the script from the terminal:
@@ -26,6 +24,8 @@ Run the script from the terminal:
 ```sh
 python typoer.py
 ```
+> [!NOTE]
+> You may need to use sudo if you are using it in linux
 
 ### Input Instructions
 1. Enter the text you want to be typed.
