@@ -2,55 +2,58 @@ import keyboard
 import random
 from time import sleep
 
-def typoer(text, wpm=200, accuracy=0.98, backspace_delay=0.03, correction_chance=1, stop_key='escape'):
+def typoer(text, wpm=200, accuracy=0.91, backspace_delay=0.03, stop_key='escape'):
     """
     Simulates human-like typing with natural speed, typos, and self-corrections.
 
     Args:
         text (str): The text to type.
         wpm (int, optional): Typing speed in words per minute. Defaults to 200.
-        accuracy (float, optional): Accuracy rate (0 to 1). Defaults to 0.98.
+        accuracy (float, optional): Accuracy rate (0 to 1). Defaults to 0.91.
         backspace_delay (float, optional): Delay between backspace presses. Defaults to 0.03.
-        correction_chance (float, optional): Probability of fixing typos. Defaults to 0.85.
         stop_key (str, optional): Key to press to stop typing. Defaults to 'escape'.
     """
     possible_chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,.!? '  # Expanded character set
     
     sec_per_char = 12 / wpm
-    variation = 0.08  # Reduced randomness for more fluid typing
+    variation = 0.05  # Reduced randomness for smoother typing
     min_delay = sec_per_char * (1 - variation)
     max_delay = sec_per_char * (1 + variation)
-
-    index = 0
-    typo_stack = 0
 
     print("Press 'space' to start typing...")
     keyboard.wait('space')
 
     print("Typing started. Press 'escape' to stop.")
-    while index < len(text):
-        if keyboard.is_pressed(stop_key):
-            print("Typing stopped.")
-            return
+    
+    for line in text.split('\n'):
+        for char in line:
+            if keyboard.is_pressed(stop_key):
+                print("Typing stopped.")
+                return
 
-        # Correct typos naturally
-        if typo_stack and (random.random() < correction_chance):
-            for _ in range(typo_stack):
-                keyboard.press_and_release('backspace')
-                sleep(backspace_delay)
-            typo_stack = 0
-            continue
+            # Introduce occasional typos only for regular characters
+            if random.random() > accuracy:
+                # Generate a typo
+                typo_char = random.choice(possible_chars)
+                keyboard.write(typo_char)
+                
+                # Always correct the typo
+                sleep(backspace_delay)  # Simulate delay before correcting
+                keyboard.press('backspace')
+                keyboard.release('backspace')
+                sleep(backspace_delay)  # Delay after backspace
+                keyboard.write(char)  # Write the correct character
+            else:
+                keyboard.write(char)
 
-        # Introduce occasional typos
-        if random.random() > accuracy:
-            keyboard.write(random.choice(possible_chars))
-            typo_stack += 1
-        else:
-            keyboard.write(text[index])
-            index += 1
-
-        # Simulate realistic typing delays
-        sleep(random.uniform(min_delay, max_delay))
+            # Simulate realistic typing delays
+            sleep(random.uniform(min_delay, max_delay))
+        
+        # Press Enter after every line
+        keyboard.press('enter')  # Press Enter
+        sleep(0.05)  # Short delay to ensure the key press is registered
+        keyboard.release('enter')  # Release Enter
+        sleep(0.5)  # Increased delay after pressing Enter
 
 if __name__ == '__main__':
     print("Enter the text to be typed (type 'END' on a new line to finish):")
