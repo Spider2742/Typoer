@@ -57,6 +57,6 @@ Enter key to stop typing (default: escape): escape
 - The script introduces **random typing speeds, typos, and corrections** for a more natural effect.
 
 ## License
-This project is open-source and available under the MIT License.
+This project is open-source and available for anyone to use
 
 
