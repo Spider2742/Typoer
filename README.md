@@ -40,7 +40,7 @@ Enter the text to be typed:
 This is the first paragraph.
 
 This is the second paragraph.
-(Press Ctrl + D or Ctrl + Z, then Enter to finish)
+(Type "END" if you dont want to add more paragraphs and press Enter)
 ```
 
 ### Example Configuration
