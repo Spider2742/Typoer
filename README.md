@@ -70,7 +70,7 @@ Perfect for:
 
 ### 1. Clone the repo
 ```bash
-git clone https://github.com/yourusername/typoer.git
+git clone https://github.com/Spider2742/typoer.git
 cd typoer
 ```
 
@@ -152,4 +152,4 @@ Feel free to use, modify, and distribute. Credit is appreciated but not required
 
 ---
 📬 **Found a bug or want a new feature?**  
-👉 [Open an issue](https://github.com/yourusername/typoer/issues) or contribute!
+👉 [Open an issue](https://github.com/Spider2742/typoer/issues) or contribute!
