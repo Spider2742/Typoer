@@ -170,7 +170,7 @@ Now share `typoer.flatpak` with any Linux user!
 
 ## 📄 License
 
-MIT © [Your Name]  
+MIT © [Spider2742]  
 Feel free to use, modify, and distribute. Credit is appreciated but not required.
 
 ---
@@ -190,6 +190,7 @@ Feel free to use, modify, and distribute. Credit is appreciated but not required
 📬 **Found a bug or want a new feature?**  
 👉 [Open an Issue](https://github.com/Spider2742/typoer/issues)
 
+- [ ] https://github.com/Spider2742/Typoer/issues/3
 ---
 
 ## 🔗 Attribution
