@@ -1,0 +1,13 @@
+{
+    "wpm": 230,
+    "accuracy": 0.91,
+    "start_key": "f8",
+    "stop_key": "escape",
+    "start_mode": "countdown",
+    "countdown": 5,
+    "theme": "dark",
+    "color_theme": "blue",
+    "sound_enabled": true,
+    "always_on_top": false,
+    "voice_enabled": true
+}

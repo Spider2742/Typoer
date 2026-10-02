@@ -13,48 +13,40 @@ Simulates **natural human typing behavior** — complete with typos, backspace c
 ## 🌟 Features
 
 - ✅ **Realistic Typing Simulation**
-  - Adjustable **Words Per Minute (WPM)**
-  - Configurable **accuracy (0–1)** to control typo frequency
-  - Random delays and typing variations
-  - Backspace corrections for typos
+  - Adjustable **Words Per Minute (WPM)**, from 20 to 400
+  - Adjustable **accuracy**, from 50% to 100%, to control typo frequency
+  - Typos land on a **neighbouring key**, then get fixed with backspace
+  - Uneven key timing, with short pauses at the end of sentences
 
-- ✅ **Multi-Paragraph & Line Break Support**
-  - Preserves formatting and newlines
-  - Handles large blocks of text seamlessly
+- ✅ **Types Anything**
+  - Preserves line breaks, tabs and blank lines
+  - Accents, dashes, curly quotes and other **Unicode characters** are typed too
+    (on Linux this needs X11 or XWayland)
 
 - ✅ **🎨 Modern GUI (CustomTkinter)**
-  - Clean, responsive interface
-  - Live **typing preview animation**
-  - Visual **progress bar** during typing
-  - One-click **start, stop, clear**
+  - Editor with live **word count, character count and time estimate**
+  - The text **lights up as it is typed**, next to a progress bar and time left
+  - One **Start / Stop** button; the window stays responsive while typing
+  - **Dark and Light** themes
+
+- ✅ **🎛️ Two Ways to Start**
+  - **Hotkey**: set your own **Start Key** (default `f8`) and **Stop Key** (default `escape`)
+  - **Countdown**: 3, 5 or 10 seconds to click into the target window
+  - Where global hotkeys can't be used (Linux without root), Typoer uses the countdown automatically
 
 - ✅ **🎙️ Voice Commands**
   - Say `"start typing"` or `"stop typing"` to control the simulator
   - Powered by Google Speech Recognition (internet required)
 
-- ✅ **🎛️ Custom Hotkeys**
-  - Set your own **Start Key** (e.g., `space`)
-  - Set your own **Stop Key** (e.g., `escape`)
-  - Works globally across applications
-
 - ✅ **📁 File Import & Export**
-  - **Import** `.txt` files with one click
-  - **Export** typed text to `.txt`
+  - **Import** a `.txt` file (it replaces the current text)
+  - **Export** the text to `.txt`
   - Settings saved to `typoer_settings.json`
 
-- ✅ **🎨 Theme & Sound**
-  - Toggle **Dark/Light mode**
-  - Enable/disable **sound notifications**
+- ✅ **🔊 Sound, Always on Top, Tray**
+  - Optional sound and spoken status
   - **Always-on-top** window option
-
-- ✅ **🗑️ Minimize to System Tray**
-  - Minimize to tray (Linux/Windows)
-  - Restore with system tray icon
-
-- ✅ **📦 Cross-Platform Packaging**
-  - Build standalone `.exe` (Windows)
-  - Build `.flatpak` (Linux)
-  - Ready for distribution
+  - **Minimise to tray**, or a normal minimise where the desktop has no tray
 
 ---
 
@@ -86,39 +78,39 @@ pip install customtkinter pyautogui keyboard plyer speechrecognition pyaudio pys
 
 ### Run the app
 ```bash
-python typoer.py
+python Typoer.py
 ```
 
 ### Step-by-Step Guide
 
 1. **Enter or Import Text**
-   - Type directly into the large text box
-   - Or click **📁 Import .txt** to load a file
+   - Type or paste into the editor
+   - Or click **Import** to load a `.txt` file
 
 2. **Adjust Settings**
-   - `WPM`: Typing speed (e.g., `200`)
-   - `Accuracy`: Typo frequency (e.g., `0.91`)
-   - `Start Key`: Key to begin typing (e.g., `space`)
-   - `Stop Key`: Key to stop (e.g., `escape`)
+   - `Speed`: typing speed in WPM (e.g., `200`)
+   - `Accuracy`: how often a typo is made (e.g., `91%`)
+   - `Start with`: **Hotkey** or **Countdown**
+   - `Start key` / `Stop key`: any key name, such as `f8`, `escape`, `space` or a single letter
 
 3. **Optional Features**
-   - 🔔 Toggle **Sound** for alerts
-   - 📌 Enable **Always on Top**
-   - 🎤 Enable **Voice Commands** (say "start typing")
-   - 🎨 Switch **Theme** (Dark/Light)
+   - 🔔 **Sound and spoken status**
+   - 🎤 **Voice commands** (say "start typing")
+   - 📌 **Always on top**
+   - 🎨 **Light / Dark** theme
 
 4. **Start Typing**
-   - Click **▶ Start Typing**
-   - Focus any text field (e.g., browser, editor)
-   - Press your **Start Key** (e.g., `space`) to begin
-   - Press your **Stop Key** (e.g., `escape`) to cancel
+   - Click **Start** (or press `Ctrl+Enter`)
+   - Click into the window where the text should go (e.g., browser, editor)
+   - Press your **Start Key**, or wait for the countdown
+   - To stop: press your **Stop Key**, click **Stop**, or throw the mouse into a corner of the screen
 
 5. **Extra Tools**
-   - 🔁 **Reset**: Clear text and progress
-   - 💾 **Export**: Save current text as `.txt`
-   - 🔽 **Minimize to Tray**: Keep running in background
+   - 🧹 **Clear**: empty the editor and reset progress
+   - 💾 **Export**: save the current text as `.txt`
+   - 🔽 **Minimise to tray**: keep running in the background
 
-> 💡 **Tip**: Enable **"Always on Top"** to keep Typoer visible while typing elsewhere!
+> 💡 **Tip**: Pick a start key that types nothing, like `f8`. A key such as `space` also lands in the window you are typing into.
 
 ---
 
@@ -127,7 +119,7 @@ python typoer.py
 ### 🪟 Windows: Build `.exe` with PyInstaller
 ```bash
 pip install pyinstaller
-pyinstaller --onefile --windowed --icon=icon.ico --name "Typoer" typoer.py
+pyinstaller --onefile --windowed --icon=icon.ico --name "Typoer" Typoer.py
 ```
 - Output: `dist/Typoer.exe`
 - Distribute the `.exe` — no Python needed!
@@ -177,20 +169,21 @@ Feel free to use, modify, and distribute. Credit is appreciated but not required
 
 ## 📝 Notes
 
-- The script **waits for the Start Key** before typing begins.
-- Press the **Stop Key** anytime to interrupt.
+- In **Hotkey** mode, typing waits for the Start Key. In **Countdown** mode it starts when the countdown ends.
+- Press the **Stop Key**, click **Stop**, or move the mouse into a screen corner to interrupt.
+- **Global hotkeys** come from the `keyboard` module, which needs root on Linux and accessibility
+  permission on macOS. Without them, Typoer falls back to the countdown.
+- On **Linux**, keystrokes are sent through X11, so the target window has to be an X11 or XWayland app.
 - **Voice commands** require:
   - Microphone access
   - Internet (Google Speech API)
-- **Accessibility permissions** are required for keyboard/mouse control on all OS.
-- Settings are saved automatically on exit.
+- Settings are saved automatically.
 
 ---
 
 📬 **Found a bug or want a new feature?**  
-👉 [Open an Issue](https://github.com/Spider2742/typoer/issues)
+👉 [Open an Issue](https://github.com/Spider2742/Typoer/issues)
 
-- [ ] https://github.com/Spider2742/Typoer/issues/3
 ---
 
 ## 🔗 Attribution
